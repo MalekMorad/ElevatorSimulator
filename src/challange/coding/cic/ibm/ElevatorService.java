@@ -12,28 +12,32 @@ import challange.coding.cic.ibm.models.Request;
 public class ElevatorService implements IElevatorService{
 
 	private Controller controller;
-	private Elevator[] elevators = new Elevator[7];
-	private Queue<Request> requests = new LinkedList<Request>();
-	private ArrayList<Person> peopleWaiting = new ArrayList<>();
+	private final int MAX_ELEVATORS;
+	private ArrayList<Elevator> elevators;
+	private Queue<Request> requests;
+	private ArrayList<Person> peopleWaiting;
 	
 	private final int minFloor;
 	private final int maxFloor;
 	private final int waitingTime;
-//	private boolean isActive;
 	
-	public ElevatorService(int minFloor, int maxFloor, int waitingTime) {
+	public ElevatorService(int minFloor, int maxFloor, int waitingTime, int maxElevators) {
 		this.minFloor = minFloor;
 		this.maxFloor = maxFloor;
 		this.waitingTime = waitingTime;
+		MAX_ELEVATORS = maxElevators;
 		
-//		initElevators();
+		elevators = new ArrayList<Elevator>();
+		requests = new LinkedList<Request>();
+		peopleWaiting = new ArrayList<>();
 	}
 	
 	// initialize 7 Elevators
 	public void initElevators() {
-		for(int i = 0; i < 7; i++) {
-			elevators[i] = new Elevator(i, minFloor, maxFloor, controller, this);
-			Thread t = new Thread(elevators[i]);
+		for(int i = 0; i < MAX_ELEVATORS; i++) {
+			Elevator el = new Elevator(i, minFloor, maxFloor, this);
+			elevators.add(el);
+			Thread t = new Thread(el);
 			t.start();
 		}
 	}
@@ -46,11 +50,11 @@ public class ElevatorService implements IElevatorService{
 	public void checkFreeElevator() {
 		Elevator bestElevator = null;
 		Request currentRequest = requests.peek();
-		int bestWaitingTime = 0;
+		int bestWaitingTime = Integer.MAX_VALUE;
 		
 		for(Elevator elevator : elevators) {
-			final MovingDirection eDirection = elevator.getDirection();
-			final MovingDirection rDirection = currentRequest.getMovingDirection();
+			MovingDirection eDirection = elevator.getDirection();
+			MovingDirection rDirection = currentRequest.getMovingDirection();
 			
 			// check first if Elevator moving in the same direction or standing still (= idle)
 			if(eDirection == rDirection || eDirection == MovingDirection.IDLE) {
@@ -61,9 +65,9 @@ public class ElevatorService implements IElevatorService{
 						eDirection == MovingDirection.IDLE) {
 					
 					// calculate waiting time for this elevator until it reaches person
-					final int currentWaitingTime = Math.abs(elevator.getCurrFloor() - currentRequest.getCurrentFloor())*waitingTime;
+					int currentWaitingTime = Math.abs(elevator.getCurrFloor() - currentRequest.getCurrentFloor())*waitingTime;
 					
-					if(bestElevator == null || bestWaitingTime > currentWaitingTime) {
+					if(bestElevator == null || currentWaitingTime < bestWaitingTime) {
 						bestWaitingTime = currentWaitingTime;
 						bestElevator = elevator;
 					}

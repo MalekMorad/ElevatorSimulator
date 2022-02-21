@@ -18,6 +18,8 @@ public interface IElevatorService {
 	// Receive Requests from Controller
 	public void addRequest(Request req);
 	
+	public void initElevators();
+	
 //	// Array of Elevators must be initialized
 //	private void initElevators() {
 //		

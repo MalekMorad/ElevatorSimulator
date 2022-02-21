@@ -7,17 +7,13 @@ public class Main {
 		final Controller controller;
 		
 		// init Elevator Service (= Model-Layer) | Ground Floor, Max Floor, WaitingTime each Floor
-		elevatorService = new ElevatorService(0, 55, 500);
+		elevatorService = new ElevatorService(0, 55, 500, 7);
 		
 		// init View (-window)
 		View window = new View();
 		
 		// init Controller (= Control-Layer) & connect view to controller
 		controller = new Controller(window, elevatorService);
-
-		// add Controller to ElevatorService
-		elevatorService.addController(controller);
-		elevatorService.initElevators();
 
 		try {
 			

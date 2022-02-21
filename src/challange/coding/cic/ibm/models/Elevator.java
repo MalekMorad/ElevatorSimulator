@@ -18,18 +18,17 @@ public class Elevator implements Runnable{
 	private boolean isCalled;
 	private boolean isAlive;
 	
-	private final Controller controller;
 	private final ElevatorService elevatorService;
 	private ArrayList<Person> people = new ArrayList<Person>();
 	private Queue<Request> assignments = new LinkedList<Request>();
 	private ArrayList<Integer> stops = new ArrayList<Integer>();
 
 	
-	public Elevator(int id, int minFloors, int maxFloors, Controller controller, ElevatorService elevatorService) {
+	public Elevator(int id, int minFloors, int maxFloors, ElevatorService elevatorService) {
 		Random rand = new Random();
 		
 		// generate a random floor between min- and maxfloor, where this elevator will be initialized
-		currFloor = rand.nextInt(maxFloors - minFloors + 1) + minFloors;
+		currFloor = rand.nextInt(maxFloors - minFloors) + minFloors;
 		
 		// on init, there is no destination until elevator is called
 		// if destination is out of bounds = no destination
@@ -41,7 +40,6 @@ public class Elevator implements Runnable{
 		// on init, elevator is not called
 		isCalled = false;
 		
-		this.controller = controller;
 		this.elevatorService = elevatorService;
 		
 		waitingTime = elevatorService.getWaitingTime();
@@ -75,7 +73,8 @@ public class Elevator implements Runnable{
 			
 			// while there are assignments or stops -> run thread
 			while(assignments.size() > 0 || stops.size() > 0){
-				System.out.println("Assignment found!");
+				System.out.println("Running!");
+				System.out.println(stops);
 
 				if(assignments.size() > 0) {
 					handleAssignment();
@@ -114,7 +113,8 @@ public class Elevator implements Runnable{
 		// check if first assignment after elevator has stopped
 		// -> set moving direction
 		if(direction == MovingDirection.IDLE) {
-			direction = req.getMovingDirection();
+			
+			direction = req.getMovingDirection() == MovingDirection.UP ? MovingDirection.DOWN : MovingDirection.UP;
 		}
 		
 		// create & add Person for this request

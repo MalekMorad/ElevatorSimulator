@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import challange.coding.cic.ibm.interfaces.IElevatorService;
 import challange.coding.cic.ibm.models.Elevator;
 import challange.coding.cic.ibm.models.MovingDirection;
 import challange.coding.cic.ibm.models.Person;
@@ -18,23 +19,22 @@ import challange.coding.cic.ibm.models.Request;
 // Also, this controller manipulates & updates the view (GUI) of this Program
 public class Controller {
 	private View view;
-	private final ElevatorService elevatorService;
+	private IElevatorService elevatorService;
 	private ExecutorService elevatorExecutor = Executors.newFixedThreadPool(7);
 	
 	public Controller(View view, ElevatorService elevatorService) {
 		
-		// save view in controller
 		this.view = view;
 		
-		// save ElevatorService in controller
 		this.elevatorService = elevatorService;
+		elevatorService.addController(this);
+		elevatorService.initElevators();
 		
-		// add listeners to view controls
-		addListeners();
+		addViewListeners();
 		
 	}
 	
-	private void addListeners() {
+	private void addViewListeners() {
 		
 		// add listener to button that calls next available elevator
 		view.getBtnCallElevator().addActionListener(new ActionListener() {
@@ -42,9 +42,9 @@ public class Controller {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				final int currentFloor;
-				final int destinationFloor;
-				final MovingDirection direction;
+				int currentFloor;
+				int destinationFloor;
+				MovingDirection direction;
 				
 				try {
 					
