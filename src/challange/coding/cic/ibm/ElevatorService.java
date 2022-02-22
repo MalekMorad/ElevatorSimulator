@@ -9,30 +9,33 @@ import challange.coding.cic.ibm.models.MovingDirection;
 import challange.coding.cic.ibm.models.Person;
 import challange.coding.cic.ibm.models.Request;
 
-public class ElevatorService implements IElevatorService{
+public class ElevatorService implements IElevatorService, Runnable{
 
 	private Controller controller;
 	private final int MAX_ELEVATORS;
 	private ArrayList<Elevator> elevators;
 	private Queue<Request> requests;
-	private ArrayList<Person> peopleWaiting;
 	
 	private final int minFloor;
 	private final int maxFloor;
 	private final int waitingTime;
+	private boolean isActive;
 	
 	public ElevatorService(int minFloor, int maxFloor, int waitingTime, int maxElevators) {
 		this.minFloor = minFloor;
 		this.maxFloor = maxFloor;
 		this.waitingTime = waitingTime;
 		MAX_ELEVATORS = maxElevators;
+		isActive = false;
 		
 		elevators = new ArrayList<Elevator>();
 		requests = new LinkedList<Request>();
-		peopleWaiting = new ArrayList<>();
+		
+		Thread t = new Thread(this);
+		t.start();
 	}
 	
-	// initialize 7 Elevators
+	// initialize all Elevators
 	public void initElevators() {
 		for(int i = 0; i < MAX_ELEVATORS; i++) {
 			Elevator el = new Elevator(i, minFloor, maxFloor, this);
@@ -42,9 +45,23 @@ public class ElevatorService implements IElevatorService{
 		}
 	}
 
+
+	@Override
+	public void run() {
+		
+		isActive = true;
+		
+		while(isActive) {
+			
+			checkRequests();
+			
+		}
+	}
+
 	/* 
-	 * check which elevator is the best choice for this request
-	 * & send this request as an assignment to the elevator
+	 * Check which elevator is the best choice for this request,
+	 * by calculating the waiting-time for this person until elevator arrives
+	 * Finally, send this request as an assignment to the elevator
 	 * */
 	@Override
 	public void checkFreeElevator() {
@@ -65,7 +82,7 @@ public class ElevatorService implements IElevatorService{
 						eDirection == MovingDirection.IDLE) {
 					
 					// calculate waiting time for this elevator until it reaches person
-					int currentWaitingTime = Math.abs(elevator.getCurrFloor() - currentRequest.getCurrentFloor())*waitingTime;
+					int currentWaitingTime = elevator.calcWaitingTime(currentRequest.getCurrentFloor());
 					
 					if(bestElevator == null || currentWaitingTime < bestWaitingTime) {
 						bestWaitingTime = currentWaitingTime;
@@ -78,14 +95,21 @@ public class ElevatorService implements IElevatorService{
 			
 		}
 		
-		// check if matching elevator found
-		if(bestElevator == null) {
-			System.out.println("No Best Elevator Found");
-			// TO DO: Wait 1 second or less and check again(sleep 1000ms)
-		} else {
-			System.out.println("Best Elevator Found!");
+		if(bestElevator != null) {
 			bestElevator.addAssignment(currentRequest);
 			requests.remove();
+		}
+	}
+	
+	private void checkRequests() {
+		if(requests.size() > 0) {
+			checkFreeElevator();
+		} else {
+			try {
+				Thread.sleep(waitingTime);	
+			} catch(InterruptedException ie) {
+				ie.printStackTrace();	
+			}
 		}
 	}
 	
@@ -101,21 +125,25 @@ public class ElevatorService implements IElevatorService{
 			elevator.toggleIsAlive();
 		}
 		
+		isActive = false;
+		
 	}
 
-	// add received Request to Queue
 	@Override
 	public void addRequest(Request req) {
-		System.out.println("Adding Request in ElevatorService");
 		requests.add(req);
-		checkFreeElevator();
+	}
+	
+	@Override
+	public boolean isValidRequest(int currentFloor, int destinationFloor) {
+		return currentFloor >= minFloor && currentFloor <= maxFloor && destinationFloor >= minFloor && destinationFloor <= maxFloor;
+	}
+	
+	public void updateControllerData(int id, int currentFloor, MovingDirection direction, ArrayList<Person> currentPeople) {
+		controller.updateElevatorLbl(id, currentFloor, direction, currentPeople);
 	}
 	
 	public int getWaitingTime() {
 		return waitingTime;
-	}
-	
-	public void updateControllerData(int id, int currentFloor, ArrayList<Person> currentPeople) {
-		controller.updateElevatorLbl(id, currentFloor, currentPeople);
 	}
 }

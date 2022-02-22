@@ -5,15 +5,16 @@ public class Person {
 	private final int currFloor;
 	private final int destFloor;
 	private static int numberOfPerson = 0;
+	private boolean isWaiting;
 	
 	public Person(int currFloor, int destFloor) {
 		this.currFloor = currFloor;
 		this.destFloor = destFloor;
+		isWaiting = true;
 		
 		generateID();
 	}
 	
-	// set id from numberOfPerson & increment variable
 	private void generateID() {
 		id = numberOfPerson;
 		numberOfPerson++;
@@ -29,5 +30,13 @@ public class Person {
 	
 	public int getDestinationFloor() {
 		return destFloor;
+	}
+	
+	public void toggleIsWaiting() {
+		isWaiting = !isWaiting;
+	}
+	
+	public boolean getIsWaiting() {
+		return isWaiting;
 	}
 }

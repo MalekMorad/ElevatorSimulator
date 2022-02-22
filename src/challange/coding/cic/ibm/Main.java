@@ -16,8 +16,6 @@ public class Main {
 		controller = new Controller(window, elevatorService);
 
 		try {
-			
-			// set View-window (= GUI) to visible
 			window.frmElevatorSimulation.setVisible(true);
 			
 		} catch (Exception e) {

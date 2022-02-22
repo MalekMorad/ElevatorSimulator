@@ -90,22 +90,6 @@ public class View {
 	public void setLblPeopleInElevatorSeven(String lbl) {
 		lblPeopleInElevatorSeven.setText(lbl);
 	}
-
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					View window = new View();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 	
 	public JButton getBtnCallElevator() {
 		return btnCallElevator;
@@ -247,6 +231,7 @@ public class View {
 		
 		JTextPane textPane = new JTextPane();
 		GridBagConstraints gbc_textPane = new GridBagConstraints();
+		gbc_textPane.weightx = 1.0;
 		gbc_textPane.weighty = 4.0;
 		gbc_textPane.insets = new Insets(0, 0, 5, 5);
 		gbc_textPane.fill = GridBagConstraints.BOTH;
@@ -256,6 +241,7 @@ public class View {
 		
 		JTextPane textPane_1 = new JTextPane();
 		GridBagConstraints gbc_textPane_1 = new GridBagConstraints();
+		gbc_textPane_1.weightx = 1.0;
 		gbc_textPane_1.weighty = 4.0;
 		gbc_textPane_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textPane_1.fill = GridBagConstraints.BOTH;
@@ -265,6 +251,7 @@ public class View {
 		
 		JTextPane textPane_3 = new JTextPane();
 		GridBagConstraints gbc_textPane_3 = new GridBagConstraints();
+		gbc_textPane_3.weightx = 1.0;
 		gbc_textPane_3.insets = new Insets(0, 0, 5, 5);
 		gbc_textPane_3.fill = GridBagConstraints.BOTH;
 		gbc_textPane_3.gridx = 4;
@@ -273,6 +260,7 @@ public class View {
 		
 		JTextPane textPane_4 = new JTextPane();
 		GridBagConstraints gbc_textPane_4 = new GridBagConstraints();
+		gbc_textPane_4.weightx = 1.0;
 		gbc_textPane_4.insets = new Insets(0, 0, 5, 5);
 		gbc_textPane_4.fill = GridBagConstraints.BOTH;
 		gbc_textPane_4.gridx = 5;
@@ -281,6 +269,7 @@ public class View {
 		
 		JTextPane textPane_3_1 = new JTextPane();
 		GridBagConstraints gbc_textPane_3_1 = new GridBagConstraints();
+		gbc_textPane_3_1.weightx = 1.0;
 		gbc_textPane_3_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textPane_3_1.fill = GridBagConstraints.BOTH;
 		gbc_textPane_3_1.gridx = 7;
@@ -289,6 +278,7 @@ public class View {
 		
 		JTextPane textPane_3_1_1 = new JTextPane();
 		GridBagConstraints gbc_textPane_3_1_1 = new GridBagConstraints();
+		gbc_textPane_3_1_1.weightx = 1.0;
 		gbc_textPane_3_1_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textPane_3_1_1.fill = GridBagConstraints.BOTH;
 		gbc_textPane_3_1_1.gridx = 8;
@@ -297,6 +287,7 @@ public class View {
 		
 		JTextPane textPane_3_1_1_1 = new JTextPane();
 		GridBagConstraints gbc_textPane_3_1_1_1 = new GridBagConstraints();
+		gbc_textPane_3_1_1_1.weightx = 1.0;
 		gbc_textPane_3_1_1_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textPane_3_1_1_1.fill = GridBagConstraints.BOTH;
 		gbc_textPane_3_1_1_1.gridx = 10;
@@ -305,6 +296,7 @@ public class View {
 		
 		JTextPane textPane_3_1_1_2 = new JTextPane();
 		GridBagConstraints gbc_textPane_3_1_1_2 = new GridBagConstraints();
+		gbc_textPane_3_1_1_2.weightx = 1.0;
 		gbc_textPane_3_1_1_2.insets = new Insets(0, 0, 5, 5);
 		gbc_textPane_3_1_1_2.fill = GridBagConstraints.BOTH;
 		gbc_textPane_3_1_1_2.gridx = 11;

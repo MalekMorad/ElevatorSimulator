@@ -4,7 +4,6 @@ import challange.coding.cic.ibm.Controller;
 import challange.coding.cic.ibm.models.Request;
 
 public interface IElevatorService {
-	// DOCUMENTATION HERE
 	
 	// Check if there is a free Elevator & add Assignment to this Elevator
 	public void checkFreeElevator();
@@ -18,10 +17,10 @@ public interface IElevatorService {
 	// Receive Requests from Controller
 	public void addRequest(Request req);
 	
+	// initialize specific amount of Elevators
 	public void initElevators();
 	
-//	// Array of Elevators must be initialized
-//	private void initElevators() {
-//		
-//	};
+	// check if Floors of Request are valid
+	public boolean isValidRequest(int currentFloor, int destinationFloor);
+	
 }
