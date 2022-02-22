@@ -15,8 +15,10 @@ import challange.coding.cic.ibm.models.MovingDirection;
 import challange.coding.cic.ibm.models.Person;
 import challange.coding.cic.ibm.models.Request;
 
-// This controller acts as the main system of this Elevator Simulation
-// Also, this controller manipulates & updates the view (GUI) of this Program
+/*
+ * Controller of MVC - Pattern
+ * Handles View interactions & contacts the Elevator Service
+ */
 public class Controller {
 	private View view;
 	private IElevatorService elevatorService;
@@ -33,10 +35,10 @@ public class Controller {
 		addViewListeners();
 
 	}
-
+	
+	// add listener to button that calls next available elevator
 	private void addViewListeners() {
 
-		// add listener to button that calls next available elevator
 		view.getBtnCallElevator().addActionListener(new ActionListener() {
 
 			@Override
@@ -48,7 +50,6 @@ public class Controller {
 
 				try {
 
-					// reset Request-Error Message
 					if (view.getLblRequestError() != "") {
 						view.setMessage("");
 					}
@@ -57,8 +58,6 @@ public class Controller {
 					destinationFloor = Integer.parseInt(view.getTxtFieldDestFloor());
 					direction = currentFloor > destinationFloor ? MovingDirection.DOWN : MovingDirection.UP;
 
-					// only if current- and destination Floor are different => send Request to
-					// ElevatorService
 					if (currentFloor != destinationFloor && elevatorService.isValidRequest(currentFloor, destinationFloor)) {
 						Request req = new Request(currentFloor, destinationFloor, direction);
 						elevatorService.addRequest(req);
@@ -75,7 +74,10 @@ public class Controller {
 		});
 	}
 
-	// updates the correct Elevator-Label (Current Floor) in view
+	/*
+	 * Receives Changes of Model (Elevator > ElevatorService > Controller)
+	 * Updates the View according to new changes
+	 */
 	public void updateElevatorLbl(int elevatorID, int currentFloor, MovingDirection direction, ArrayList<Person> currentPeople) {
 		ArrayList<String> labeledPeople = new ArrayList<String>();
 
@@ -84,12 +86,12 @@ public class Controller {
 		} else {
 			for (int i = 0; i < currentPeople.size(); i++) {
 				Person person = currentPeople.get(i);
-				labeledPeople.add((person.getIsWaiting() ? "WAITING - " : "") + "P" + person.getID() + " | d." + person.getDestinationFloor());
+				labeledPeople.add((person.getIsWaiting() ? "WAITING - " : "") + "P." + person.getID() + " - dest." + person.getDestinationFloor() + " ");
 			}
 		}
 		
 		String floor = String.valueOf(currentFloor);
-		String people = "<html>" + labeledPeople.toString() + "</html>";
+		String people = labeledPeople.toString();
 		
 		if(direction == MovingDirection.DOWN) {
 			floor += " - DOWN";
@@ -100,38 +102,31 @@ public class Controller {
 		switch (elevatorID) {
 		case 0:
 			view.setLblCurrFloorOfElevatorOne(floor);
-			view.setLblPeopleInElevatorOne(people);
-			// TO DO: update correct label of elevator
+			view.setTxtAreaPeopleInElevatorOne(people);
 			break;
 		case 1:
 			view.setLblCurrFloorOfElevatorTwo(floor);
-			view.setLblPeopleInElevatorTwo(people);
-			// TO DO: update correct label of elevator
+			view.setTxtAreaPeopleInElevatorTwo(people);
 			break;
 		case 2:
 			view.setLblCurrFloorOfElevatorThree(floor);
-			view.setLblPeopleInElevatorThree(people);
-			// TO DO: update correct label of elevator
+			view.setTxtAreaPeopleInElevatorThree(people);
 			break;
 		case 3:
 			view.setLblCurrFloorOfElevatorFour(floor);
-			view.setLblPeopleInElevatorFour(people);
-			// TO DO: update correct label of elevator
+			view.setTxtAreaPeopleInElevatorFour(people);
 			break;
 		case 4:
 			view.setLblCurrFloorOfElevatorFive(floor);
-			view.setLblPeopleInElevatorFive(people);
-			// TO DO: update correct label of elevator
+			view.setTxtAreaPeopleInElevatorFive(people);
 			break;
 		case 5:
 			view.setLblCurrFloorOfElevatorSix(floor);
-			view.setLblPeopleInElevatorSix(people);
-			// TO DO: update correct label of elevator
+			view.setTxtAreaPeopleInElevatorSix(people);
 			break;
 		case 6:
 			view.setLblCurrFloorOfElevatorSeven(floor);
-			view.setLblPeopleInElevatorSeven(people);
-			// TO DO: update correct label of elevator
+			view.setTxtAreaPeopleInElevatorSeven(people);
 			break;
 		}
 	}

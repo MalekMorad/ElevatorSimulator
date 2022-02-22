@@ -1,5 +1,9 @@
 package challange.coding.cic.ibm.models;
 
+/*
+ * Request on User(=Person) interaction with interface
+ * Request as noted: Current Floor, Destination Floor, Moving Direction
+ */
 public class Request {
 	private int currentFloor;
 	private int destinationFloor;

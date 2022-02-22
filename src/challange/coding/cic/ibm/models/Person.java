@@ -1,5 +1,8 @@
 package challange.coding.cic.ibm.models;
 
+/*
+ * Person that waits, enters & exits an elevator
+ */
 public class Person {
 	private int id;
 	private final int currFloor;

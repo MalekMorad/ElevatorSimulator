@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.JSplitPane;
+import javax.swing.JTextArea;
 import javax.swing.BoxLayout;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
@@ -19,6 +20,10 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/*
+ * View receives and outputs Changes / Data 
+ * & serves as the main interface between program & User
+ */
 public class View {
 
 	JFrame frmElevatorSimulation;
@@ -37,13 +42,13 @@ public class View {
 	private JLabel lblCurrFloorOfElevatorSeven;
 	
 	// Elevator Person List
-	private JLabel lblPeopleInElevatorOne;
-	private JLabel lblPeopleInElevatorTwo;
-	private JLabel lblPeopleInElevatorThree;
-	private JLabel lblPeopleInElevatorFour;
-	private JLabel lblPeopleInElevatorFive;
-	private JLabel lblPeopleInElevatorSix;
-	private JLabel lblPeopleInElevatorSeven;
+	private JTextArea txtAreaPeopleInElevatorOne;
+	private JTextArea txtAreaPeopleInElevatorTwo;
+	private JTextArea txtAreaPeopleInElevatorThree;
+	private JTextArea txtAreaPeopleInElevatorFour;
+	private JTextArea txtAreaPeopleInElevatorFive;
+	private JTextArea txtAreaPeopleInElevatorSix;
+	private JTextArea txtAreaPeopleInElevatorSeven;
 	
 	// Setter of Elevator-Current-Floor-Labels
 	public void setLblCurrFloorOfElevatorOne(String lbl) {
@@ -68,29 +73,30 @@ public class View {
 		lblCurrFloorOfElevatorSeven.setText(lbl);
 	}
 
-	// Setter of Elevator-Current-Floor-Labels
-	public void setLblPeopleInElevatorOne(String lbl) {
-		lblPeopleInElevatorOne.setText(lbl);
+	// Setter of People in Elevator - Label
+	public void setTxtAreaPeopleInElevatorOne(String lbl) {
+		txtAreaPeopleInElevatorOne.setText(lbl);
 	}
-	public void setLblPeopleInElevatorTwo(String lbl) {
-		lblPeopleInElevatorTwo.setText(lbl);
+	public void setTxtAreaPeopleInElevatorTwo(String lbl) {
+		txtAreaPeopleInElevatorTwo.setText(lbl);
 	}
-	public void setLblPeopleInElevatorThree(String lbl) {
-		lblPeopleInElevatorThree.setText(lbl);
+	public void setTxtAreaPeopleInElevatorThree(String lbl) {
+		txtAreaPeopleInElevatorThree.setText(lbl);
 	}
-	public void setLblPeopleInElevatorFour(String lbl) {
-		lblPeopleInElevatorFour.setText(lbl);
+	public void setTxtAreaPeopleInElevatorFour(String lbl) {
+		txtAreaPeopleInElevatorFour.setText(lbl);
 	}
-	public void setLblPeopleInElevatorFive(String lbl) {
-		lblPeopleInElevatorFive.setText(lbl);
+	public void setTxtAreaPeopleInElevatorFive(String lbl) {
+		txtAreaPeopleInElevatorFive.setText(lbl);
 	}
-	public void setLblPeopleInElevatorSix(String lbl) {
-		lblPeopleInElevatorSix.setText(lbl);
+	public void setTxtAreaPeopleInElevatorSix(String lbl) {
+		txtAreaPeopleInElevatorSix.setText(lbl);
 	}
-	public void setLblPeopleInElevatorSeven(String lbl) {
-		lblPeopleInElevatorSeven.setText(lbl);
+	public void setTxtAreaPeopleInElevatorSeven(String lbl) {
+		txtAreaPeopleInElevatorSeven.setText(lbl);
 	}
 	
+	// Getter of Labels in View for Controller
 	public JButton getBtnCallElevator() {
 		return btnCallElevator;
 	}
@@ -230,9 +236,10 @@ public class View {
 		panelCenter.add(lblCurrFloorOfElevatorFour, gbc_lblCurrFloorOfElevatorFour);
 		
 		JTextPane textPane = new JTextPane();
+		textPane.setEditable(false);
 		GridBagConstraints gbc_textPane = new GridBagConstraints();
 		gbc_textPane.weightx = 1.0;
-		gbc_textPane.weighty = 4.0;
+		gbc_textPane.weighty = 5.0;
 		gbc_textPane.insets = new Insets(0, 0, 5, 5);
 		gbc_textPane.fill = GridBagConstraints.BOTH;
 		gbc_textPane.gridx = 1;
@@ -240,6 +247,7 @@ public class View {
 		panelCenter.add(textPane, gbc_textPane);
 		
 		JTextPane textPane_1 = new JTextPane();
+		textPane_1.setEditable(false);
 		GridBagConstraints gbc_textPane_1 = new GridBagConstraints();
 		gbc_textPane_1.weightx = 1.0;
 		gbc_textPane_1.weighty = 4.0;
@@ -250,6 +258,7 @@ public class View {
 		panelCenter.add(textPane_1, gbc_textPane_1);
 		
 		JTextPane textPane_3 = new JTextPane();
+		textPane_3.setEditable(false);
 		GridBagConstraints gbc_textPane_3 = new GridBagConstraints();
 		gbc_textPane_3.weightx = 1.0;
 		gbc_textPane_3.insets = new Insets(0, 0, 5, 5);
@@ -259,6 +268,7 @@ public class View {
 		panelCenter.add(textPane_3, gbc_textPane_3);
 		
 		JTextPane textPane_4 = new JTextPane();
+		textPane_4.setEditable(false);
 		GridBagConstraints gbc_textPane_4 = new GridBagConstraints();
 		gbc_textPane_4.weightx = 1.0;
 		gbc_textPane_4.insets = new Insets(0, 0, 5, 5);
@@ -268,6 +278,7 @@ public class View {
 		panelCenter.add(textPane_4, gbc_textPane_4);
 		
 		JTextPane textPane_3_1 = new JTextPane();
+		textPane_3_1.setEditable(false);
 		GridBagConstraints gbc_textPane_3_1 = new GridBagConstraints();
 		gbc_textPane_3_1.weightx = 1.0;
 		gbc_textPane_3_1.insets = new Insets(0, 0, 5, 5);
@@ -277,6 +288,7 @@ public class View {
 		panelCenter.add(textPane_3_1, gbc_textPane_3_1);
 		
 		JTextPane textPane_3_1_1 = new JTextPane();
+		textPane_3_1_1.setEditable(false);
 		GridBagConstraints gbc_textPane_3_1_1 = new GridBagConstraints();
 		gbc_textPane_3_1_1.weightx = 1.0;
 		gbc_textPane_3_1_1.insets = new Insets(0, 0, 5, 5);
@@ -286,6 +298,7 @@ public class View {
 		panelCenter.add(textPane_3_1_1, gbc_textPane_3_1_1);
 		
 		JTextPane textPane_3_1_1_1 = new JTextPane();
+		textPane_3_1_1_1.setEditable(false);
 		GridBagConstraints gbc_textPane_3_1_1_1 = new GridBagConstraints();
 		gbc_textPane_3_1_1_1.weightx = 1.0;
 		gbc_textPane_3_1_1_1.insets = new Insets(0, 0, 5, 5);
@@ -295,6 +308,7 @@ public class View {
 		panelCenter.add(textPane_3_1_1_1, gbc_textPane_3_1_1_1);
 		
 		JTextPane textPane_3_1_1_2 = new JTextPane();
+		textPane_3_1_1_2.setEditable(false);
 		GridBagConstraints gbc_textPane_3_1_1_2 = new GridBagConstraints();
 		gbc_textPane_3_1_1_2.weightx = 1.0;
 		gbc_textPane_3_1_1_2.insets = new Insets(0, 0, 5, 5);
@@ -303,37 +317,54 @@ public class View {
 		gbc_textPane_3_1_1_2.gridy = 2;
 		panelCenter.add(textPane_3_1_1_2, gbc_textPane_3_1_1_2);
 		
-		lblPeopleInElevatorOne = new JLabel("No People inside");
-		GridBagConstraints gbc_lblPeopleInElevatorOne = new GridBagConstraints();
-		gbc_lblPeopleInElevatorOne.gridwidth = 2;
-		gbc_lblPeopleInElevatorOne.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPeopleInElevatorOne.gridx = 1;
-		gbc_lblPeopleInElevatorOne.gridy = 3;
-		panelCenter.add(lblPeopleInElevatorOne, gbc_lblPeopleInElevatorOne);
+		txtAreaPeopleInElevatorOne = new JTextArea(5, 20);
+		txtAreaPeopleInElevatorOne.setLineWrap(true);
+		txtAreaPeopleInElevatorOne.setWrapStyleWord(true);
+		txtAreaPeopleInElevatorOne.setEditable(false);
+		GridBagConstraints gbc_txtAreaPeopleInElevatorOne = new GridBagConstraints();
+		gbc_txtAreaPeopleInElevatorOne.gridwidth = 2;
+		gbc_txtAreaPeopleInElevatorOne.weighty = 1.0;
+		gbc_txtAreaPeopleInElevatorOne.fill = GridBagConstraints.BOTH;
+		gbc_txtAreaPeopleInElevatorOne.insets = new Insets(0, 0, 5, 5);
+		gbc_txtAreaPeopleInElevatorOne.gridx = 1;
+		gbc_txtAreaPeopleInElevatorOne.gridy = 3;
+		panelCenter.add(txtAreaPeopleInElevatorOne, gbc_txtAreaPeopleInElevatorOne);
 		
-		lblPeopleInElevatorTwo = new JLabel("No People inside");
-		GridBagConstraints gbc_lblPeopleInElevatorTwo = new GridBagConstraints();
-		gbc_lblPeopleInElevatorTwo.gridwidth = 2;
-		gbc_lblPeopleInElevatorTwo.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPeopleInElevatorTwo.gridx = 4;
-		gbc_lblPeopleInElevatorTwo.gridy = 3;
-		panelCenter.add(lblPeopleInElevatorTwo, gbc_lblPeopleInElevatorTwo);
+		txtAreaPeopleInElevatorTwo = new JTextArea(5, 20);
+		txtAreaPeopleInElevatorTwo.setLineWrap(true);
+		txtAreaPeopleInElevatorTwo.setWrapStyleWord(true);
+		txtAreaPeopleInElevatorTwo.setEditable(false);
+		GridBagConstraints gbc_txtAreaPeopleInElevatorTwo = new GridBagConstraints();
+		gbc_txtAreaPeopleInElevatorTwo.fill = GridBagConstraints.BOTH;
+		gbc_txtAreaPeopleInElevatorTwo.gridwidth = 2;
+		gbc_txtAreaPeopleInElevatorTwo.insets = new Insets(0, 0, 5, 5);
+		gbc_txtAreaPeopleInElevatorTwo.gridx = 4;
+		gbc_txtAreaPeopleInElevatorTwo.gridy = 3;
+		panelCenter.add(txtAreaPeopleInElevatorTwo, gbc_txtAreaPeopleInElevatorTwo);
 		
-		lblPeopleInElevatorThree = new JLabel("No People inside");
-		GridBagConstraints gbc_lblPeopleInElevatorThree = new GridBagConstraints();
-		gbc_lblPeopleInElevatorThree.gridwidth = 2;
-		gbc_lblPeopleInElevatorThree.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPeopleInElevatorThree.gridx = 7;
-		gbc_lblPeopleInElevatorThree.gridy = 3;
-		panelCenter.add(lblPeopleInElevatorThree, gbc_lblPeopleInElevatorThree);
+		txtAreaPeopleInElevatorThree = new JTextArea(5, 20);
+		txtAreaPeopleInElevatorThree.setLineWrap(true);
+		txtAreaPeopleInElevatorThree.setWrapStyleWord(true);
+		txtAreaPeopleInElevatorThree.setEditable(false);
+		GridBagConstraints gbc_txtAreaPeopleInElevatorThree = new GridBagConstraints();
+		gbc_txtAreaPeopleInElevatorThree.fill = GridBagConstraints.BOTH;
+		gbc_txtAreaPeopleInElevatorThree.gridwidth = 2;
+		gbc_txtAreaPeopleInElevatorThree.insets = new Insets(0, 0, 5, 5);
+		gbc_txtAreaPeopleInElevatorThree.gridx = 7;
+		gbc_txtAreaPeopleInElevatorThree.gridy = 3;
+		panelCenter.add(txtAreaPeopleInElevatorThree, gbc_txtAreaPeopleInElevatorThree);
 		
-		lblPeopleInElevatorFour = new JLabel("No People inside");
-		GridBagConstraints gbc_lblPeopleInElevatorFour = new GridBagConstraints();
-		gbc_lblPeopleInElevatorFour.gridwidth = 2;
-		gbc_lblPeopleInElevatorFour.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPeopleInElevatorFour.gridx = 10;
-		gbc_lblPeopleInElevatorFour.gridy = 3;
-		panelCenter.add(lblPeopleInElevatorFour, gbc_lblPeopleInElevatorFour);
+		txtAreaPeopleInElevatorFour = new JTextArea(5, 20);
+		txtAreaPeopleInElevatorFour.setLineWrap(true);
+		txtAreaPeopleInElevatorFour.setWrapStyleWord(true);
+		txtAreaPeopleInElevatorFour.setEditable(false);
+		GridBagConstraints gbc_txtAreaPeopleInElevatorFour = new GridBagConstraints();
+		gbc_txtAreaPeopleInElevatorFour.fill = GridBagConstraints.BOTH;
+		gbc_txtAreaPeopleInElevatorFour.gridwidth = 2;
+		gbc_txtAreaPeopleInElevatorFour.insets = new Insets(0, 0, 5, 5);
+		gbc_txtAreaPeopleInElevatorFour.gridx = 10;
+		gbc_txtAreaPeopleInElevatorFour.gridy = 3;
+		panelCenter.add(txtAreaPeopleInElevatorFour, gbc_txtAreaPeopleInElevatorFour);
 		
 		lblCurrFloorOfElevatorFive = new JLabel(" ------------- ");
 		GridBagConstraints gbc_lblCurrFloorOfElevatorFive = new GridBagConstraints();
@@ -360,8 +391,9 @@ public class View {
 		panelCenter.add(lblCurrFloorOfElevatorSeven, gbc_lblCurrFloorOfElevatorSeven);
 		
 		JTextPane textPane_2 = new JTextPane();
+		textPane_2.setEditable(false);
 		GridBagConstraints gbc_textPane_2 = new GridBagConstraints();
-		gbc_textPane_2.weighty = 4.0;
+		gbc_textPane_2.weighty = 5.0;
 		gbc_textPane_2.insets = new Insets(0, 0, 5, 5);
 		gbc_textPane_2.fill = GridBagConstraints.BOTH;
 		gbc_textPane_2.gridx = 1;
@@ -369,6 +401,7 @@ public class View {
 		panelCenter.add(textPane_2, gbc_textPane_2);
 		
 		JTextPane textPane_5 = new JTextPane();
+		textPane_5.setEditable(false);
 		GridBagConstraints gbc_textPane_5 = new GridBagConstraints();
 		gbc_textPane_5.weighty = 4.0;
 		gbc_textPane_5.insets = new Insets(0, 0, 5, 5);
@@ -378,6 +411,7 @@ public class View {
 		panelCenter.add(textPane_5, gbc_textPane_5);
 		
 		JTextPane textPane_2_1 = new JTextPane();
+		textPane_2_1.setEditable(false);
 		GridBagConstraints gbc_textPane_2_1 = new GridBagConstraints();
 		gbc_textPane_2_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textPane_2_1.fill = GridBagConstraints.BOTH;
@@ -386,6 +420,7 @@ public class View {
 		panelCenter.add(textPane_2_1, gbc_textPane_2_1);
 		
 		JTextPane textPane_5_1 = new JTextPane();
+		textPane_5_1.setEditable(false);
 		GridBagConstraints gbc_textPane_5_1 = new GridBagConstraints();
 		gbc_textPane_5_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textPane_5_1.fill = GridBagConstraints.BOTH;
@@ -394,6 +429,7 @@ public class View {
 		panelCenter.add(textPane_5_1, gbc_textPane_5_1);
 		
 		JTextPane textPane_5_2 = new JTextPane();
+		textPane_5_2.setEditable(false);
 		GridBagConstraints gbc_textPane_5_2 = new GridBagConstraints();
 		gbc_textPane_5_2.insets = new Insets(0, 0, 5, 5);
 		gbc_textPane_5_2.fill = GridBagConstraints.BOTH;
@@ -402,6 +438,7 @@ public class View {
 		panelCenter.add(textPane_5_2, gbc_textPane_5_2);
 		
 		JTextPane textPane_5_3 = new JTextPane();
+		textPane_5_3.setEditable(false);
 		GridBagConstraints gbc_textPane_5_3 = new GridBagConstraints();
 		gbc_textPane_5_3.insets = new Insets(0, 0, 5, 5);
 		gbc_textPane_5_3.fill = GridBagConstraints.BOTH;
@@ -409,28 +446,42 @@ public class View {
 		gbc_textPane_5_3.gridy = 6;
 		panelCenter.add(textPane_5_3, gbc_textPane_5_3);
 		
-		lblPeopleInElevatorFive = new JLabel("No People inside");
-		GridBagConstraints gbc_lblPeopleInElevatorFive = new GridBagConstraints();
-		gbc_lblPeopleInElevatorFive.gridwidth = 2;
-		gbc_lblPeopleInElevatorFive.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPeopleInElevatorFive.gridx = 1;
-		gbc_lblPeopleInElevatorFive.gridy = 7;
-		panelCenter.add(lblPeopleInElevatorFive, gbc_lblPeopleInElevatorFive);
+		txtAreaPeopleInElevatorFive = new JTextArea(5, 20);
+		txtAreaPeopleInElevatorFive.setLineWrap(true);
+		txtAreaPeopleInElevatorFive.setWrapStyleWord(true);
+		txtAreaPeopleInElevatorFive.setEditable(false);
+		GridBagConstraints gbc_txtAreaPeopleInElevatorFive = new GridBagConstraints();
+		gbc_txtAreaPeopleInElevatorFive.fill = GridBagConstraints.BOTH;
+		gbc_txtAreaPeopleInElevatorFive.gridwidth = 2;
+		gbc_txtAreaPeopleInElevatorFive.insets = new Insets(0, 0, 5, 5);
+		gbc_txtAreaPeopleInElevatorFive.gridx = 1;
+		gbc_txtAreaPeopleInElevatorFive.gridy = 7;
+		panelCenter.add(txtAreaPeopleInElevatorFive, gbc_txtAreaPeopleInElevatorFive);
 		
-		lblPeopleInElevatorSix = new JLabel("No People inside");
-		GridBagConstraints gbc_lblPeopleInElevatorSix = new GridBagConstraints();
-		gbc_lblPeopleInElevatorSix.gridwidth = 2;
-		gbc_lblPeopleInElevatorSix.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPeopleInElevatorSix.gridx = 4;
-		gbc_lblPeopleInElevatorSix.gridy = 7;
-		panelCenter.add(lblPeopleInElevatorSix, gbc_lblPeopleInElevatorSix);
+		txtAreaPeopleInElevatorSix = new JTextArea(5, 20);
+		txtAreaPeopleInElevatorSix.setLineWrap(true);
+		txtAreaPeopleInElevatorSix.setWrapStyleWord(true);
+		txtAreaPeopleInElevatorSix.setEditable(false);
+		GridBagConstraints gbc_txtAreaPeopleInElevatorSix = new GridBagConstraints();
+		gbc_txtAreaPeopleInElevatorSix.weighty = 1.0;
+		gbc_txtAreaPeopleInElevatorSix.fill = GridBagConstraints.BOTH;
+		gbc_txtAreaPeopleInElevatorSix.gridwidth = 2;
+		gbc_txtAreaPeopleInElevatorSix.insets = new Insets(0, 0, 5, 5);
+		gbc_txtAreaPeopleInElevatorSix.gridx = 4;
+		gbc_txtAreaPeopleInElevatorSix.gridy = 7;
+		panelCenter.add(txtAreaPeopleInElevatorSix, gbc_txtAreaPeopleInElevatorSix);
 		
-		lblPeopleInElevatorSeven = new JLabel("No People inside");
-		GridBagConstraints gbc_lblPeopleInElevatorSeven = new GridBagConstraints();
-		gbc_lblPeopleInElevatorSeven.gridwidth = 2;
-		gbc_lblPeopleInElevatorSeven.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPeopleInElevatorSeven.gridx = 7;
-		gbc_lblPeopleInElevatorSeven.gridy = 7;
-		panelCenter.add(lblPeopleInElevatorSeven, gbc_lblPeopleInElevatorSeven);
+		txtAreaPeopleInElevatorSeven = new JTextArea(5, 20);
+		txtAreaPeopleInElevatorSeven.setLineWrap(true);
+		txtAreaPeopleInElevatorSeven.setWrapStyleWord(true);
+		txtAreaPeopleInElevatorSeven.setEditable(false);
+		GridBagConstraints gbc_txtAreaPeopleInElevatorSeven = new GridBagConstraints();
+		gbc_txtAreaPeopleInElevatorSeven.weighty = 1.0;
+		gbc_txtAreaPeopleInElevatorSeven.fill = GridBagConstraints.BOTH;
+		gbc_txtAreaPeopleInElevatorSeven.gridwidth = 2;
+		gbc_txtAreaPeopleInElevatorSeven.insets = new Insets(0, 0, 5, 5);
+		gbc_txtAreaPeopleInElevatorSeven.gridx = 7;
+		gbc_txtAreaPeopleInElevatorSeven.gridy = 7;
+		panelCenter.add(txtAreaPeopleInElevatorSeven, gbc_txtAreaPeopleInElevatorSeven);
 	}
 }

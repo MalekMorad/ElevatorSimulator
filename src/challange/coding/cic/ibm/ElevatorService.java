@@ -35,7 +35,6 @@ public class ElevatorService implements IElevatorService, Runnable{
 		t.start();
 	}
 	
-	// initialize all Elevators
 	public void initElevators() {
 		for(int i = 0; i < MAX_ELEVATORS; i++) {
 			Elevator el = new Elevator(i, minFloor, maxFloor, this);
@@ -52,9 +51,7 @@ public class ElevatorService implements IElevatorService, Runnable{
 		isActive = true;
 		
 		while(isActive) {
-			
 			checkRequests();
-			
 		}
 	}
 
@@ -101,6 +98,7 @@ public class ElevatorService implements IElevatorService, Runnable{
 		}
 	}
 	
+	// Continuesly check if new Requests available
 	private void checkRequests() {
 		if(requests.size() > 0) {
 			checkFreeElevator();

@@ -38,18 +38,9 @@ public class Elevator implements Runnable {
 		elevatorService.updateControllerData(id, currFloor, direction, people);
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Elevator other = (Elevator) obj;
-		return id == other.id;
-	}
-
+	/*
+	 * Elevator processes Assignments if available
+	 */
 	@Override
 	public void run() {
 
@@ -71,7 +62,6 @@ public class Elevator implements Runnable {
 					ie.printStackTrace();
 				}
 
-				// update current Floor (= move Elevator)
 				if (direction != MovingDirection.IDLE) {
 					if (direction == MovingDirection.DOWN) {
 						currFloor--;
@@ -103,7 +93,7 @@ public class Elevator implements Runnable {
 		addNewStop(p);
 	}
 
-	// add necessary stop for elevator
+	// add necessary stop for elevator in ordered manner
 	private void addNewStop(Person p) {
 
 		if (stops.size() <= 0) {
@@ -116,7 +106,6 @@ public class Elevator implements Runnable {
 			int[] newStops = { p.getCurrentFloor(), p.getDestinationFloor() };
 			int currentStopSize = stops.size();
 
-			// insert new stops at correct position to keep the list ordered
 			for (int i = 0; i < newStops.length; i++) {
 
 				if (!stops.contains(newStops[i])) {
@@ -128,8 +117,6 @@ public class Elevator implements Runnable {
 						} else if (j == stops.size() - 1) {
 							stops.add(newStops[i]);
 						}
-
-						System.out.println(stops.toString());
 
 					}
 					
@@ -155,9 +142,7 @@ public class Elevator implements Runnable {
 					direction = p.getDestinationFloor() > currFloor ? MovingDirection.UP : MovingDirection.DOWN;
 					p.toggleIsWaiting();
 				} else if (p.getDestinationFloor() == currFloor) {
-					System.out.println("REMOVING PERSON: P" + p.getID());
 					people.remove(i);
-					System.out.println("PEOPLE-SIZE AFTER DELETE: " + people.size());
 					i--;
 				}
 
@@ -182,6 +167,7 @@ public class Elevator implements Runnable {
 
 	}
 
+	// calculate waiting time for Range between waiting person and Elevator
 	public int calcWaitingTime(int reqCurrentFloor) {
 		int fullWaitingTime = Math.abs(currFloor - reqCurrentFloor - stops.size()) * waitingTime
 				+ (stops.size() * standingTime);
